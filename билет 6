@@ -1,0 +1,36 @@
+Куча. Сортировка кучей.
+
+Куча - структура данных, дерево, в котором элементы хранятся в особом порядке: 
+значение в родительском узле больше (или меньше) значений в его двух дочерних узлах.
+Для элементов ячейки с индексом i потомки будут храниться в ячейках с индексами 2i+1 и 2i+2.
+
+Сортировка:
+
+def subcucha(arr,i,size):
+    L = 2*i+1 
+    R = 2*i + 2 
+    Me = i 
+    if L < size and arr[L] > arr[Me]:
+        minimum = L 
+    else:
+        minimum = Me 
+    if R < size and arr[R] > arr[minimum]:
+        minimum = R
+    if minimum == Me:
+        return 
+    else:
+        memory = arr[Me]
+        arr[Me] = arr[minimum]
+        arr[minimum] = memory
+        subcucha(arr,minimum,size)
+def cucha(a,size):    
+    for x in range(size//2,-1,-1):
+        subcucha(a,x,size)
+def heapsort(a):
+    for x in range(len(a)-1,-1,-1):
+        cucha(a,x+1)
+        for i in a: print(i, end = " ")
+        print('', end = '\n')
+        memory = a[0]
+        a[0] = a[x]
+        a[x] = memory
